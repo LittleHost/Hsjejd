@@ -93,8 +93,8 @@ def em(text: str) -> str:
 def main_kb():
     return ReplyKeyboardMarkup(
         keyboard=[[
-            KeyboardButton(text=em("🎮 Игры в боте"), icon_custom_emoji_id=E["game"]),
-            KeyboardButton(text=em("👤 Профиль"), icon_custom_emoji_id=E["profile"])
+            KeyboardButton(text=em(" Игры в боте"), icon_custom_emoji_id=E["game"]),
+            KeyboardButton(text=em(" Профиль"), icon_custom_emoji_id=E["profile"])
         ]],
         resize_keyboard=True
     )
@@ -107,55 +107,45 @@ def games_kb():
         InlineKeyboardButton(text="🎯", callback_data="game_target"),
         InlineKeyboardButton(text="🗼", callback_data="game_tower")
     )
-    b.row(InlineKeyboardButton(text=em("💬 Наш Чат"), url=CHAT_LINK, icon_custom_emoji_id=E["chat"]))
-    b.row(InlineKeyboardButton(text=em("🔙 Назад"), callback_data="back_main", icon_custom_emoji_id=E["back"]))
+    b.row(InlineKeyboardButton(text=em(" Наш Чат"), url=CHAT_LINK, icon_custom_emoji_id=E["chat"]))
+    b.row(InlineKeyboardButton(text=em(" Назад"), callback_data="back_main", icon_custom_emoji_id=E["back"]))
     return b.as_markup()
 
 def profile_kb():
     return InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text=em("💳 Пополнить"), callback_data="deposit", icon_custom_emoji_id=E["deposit"]),
-         InlineKeyboardButton(text=em("💰 Вывести"), callback_data="withdraw", icon_custom_emoji_id=E["withdraw"])],
-        [InlineKeyboardButton(text=em("🎁 Промокоды"), callback_data="promo", icon_custom_emoji_id=E["gift"]),
-         InlineKeyboardButton(text=em("👥 Реф Программа"), callback_data="ref", icon_custom_emoji_id=E["ref"])],
-        [InlineKeyboardButton(text=em("📤 Перевод"), callback_data="transfer", icon_custom_emoji_id=E["send"]),
-         InlineKeyboardButton(text=em("🔙 Назад"), callback_data="back_main", icon_custom_emoji_id=E["back"])]
+        [InlineKeyboardButton(text=em(" Пополнить"), callback_data="deposit", icon_custom_emoji_id=E["deposit"]),
+         InlineKeyboardButton(text=em(" Вывести"), callback_data="withdraw", icon_custom_emoji_id=E["withdraw"])],
+        [InlineKeyboardButton(text=em(" Промокоды"), callback_data="promo", icon_custom_emoji_id=E["gift"]),
+         InlineKeyboardButton(text=em(" Реф Программа"), callback_data="ref", icon_custom_emoji_id=E["ref"])],
+        [InlineKeyboardButton(text=em(" Перевод"), callback_data="transfer", icon_custom_emoji_id=E["send"]),
+         InlineKeyboardButton(text=em(" Назад"), callback_data="back_main", icon_custom_emoji_id=E["back"])]
     ])
 
 def deposit_kb():
     return InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text=em("💎 CryptoBot"), callback_data="dep_crypto", icon_custom_emoji_id=E["crypto"])],
-        [InlineKeyboardButton(text=em("⭐️ Telegram Stars"), callback_data="dep_stars", icon_custom_emoji_id=E["star"])],
-        [InlineKeyboardButton(text=em("🔙 Назад"), callback_data="back_profile", icon_custom_emoji_id=E["back"])]
+        [InlineKeyboardButton(text=em(" CryptoBot"), callback_data="dep_crypto", icon_custom_emoji_id=E["crypto"])],
+        [InlineKeyboardButton(text=em(" Telegram Stars"), callback_data="dep_stars", icon_custom_emoji_id=E["star"])],
+        [InlineKeyboardButton(text=em(" Назад"), callback_data="back_profile", icon_custom_emoji_id=E["back"])]
     ])
 
 def stars_amount_kb():
     return InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text=em("⭐️ 50 Stars ($0.55)"), callback_data="stars_50", icon_custom_emoji_id=E["star"])],
-        [InlineKeyboardButton(text=em("⭐️ 100 Stars ($1.10)"), callback_data="stars_100", icon_custom_emoji_id=E["star"])],
-        [InlineKeyboardButton(text=em("⭐️ 250 Stars ($2.75)"), callback_data="stars_250", icon_custom_emoji_id=E["star"])],
-        [InlineKeyboardButton(text=em("⭐️ 500 Stars ($5.50)"), callback_data="stars_500", icon_custom_emoji_id=E["star"])],
-        [InlineKeyboardButton(text=em("⭐️ 1000 Stars ($11.00)"), callback_data="stars_1000", icon_custom_emoji_id=E["star"])],
-        [InlineKeyboardButton(text=em("🔙 Назад"), callback_data="back_deposit", icon_custom_emoji_id=E["back"])]
+        [InlineKeyboardButton(text=em(" 50 Stars ($0.55)"), callback_data="stars_50", icon_custom_emoji_id=E["star"])],
+        [InlineKeyboardButton(text=em(" 100 Stars ($1.10)"), callback_data="stars_100", icon_custom_emoji_id=E["star"])],
+        [InlineKeyboardButton(text=em(" 250 Stars ($2.75)"), callback_data="stars_250", icon_custom_emoji_id=E["star"])],
+        [InlineKeyboardButton(text=em(" 500 Stars ($5.50)"), callback_data="stars_500", icon_custom_emoji_id=E["star"])],
+        [InlineKeyboardButton(text=em(" 1000 Stars ($11.00)"), callback_data="stars_1000", icon_custom_emoji_id=E["star"])],
+        [InlineKeyboardButton(text=em(" Назад"), callback_data="back_deposit", icon_custom_emoji_id=E["back"])]
     ])
 
 def back_kb():
     return InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text=em("🔙 Назад"), callback_data="back_profile", icon_custom_emoji_id=E["back"])]
+        [InlineKeyboardButton(text=em(" Назад"), callback_data="back_profile", icon_custom_emoji_id=E["back"])]
     ])
 
 def cancel_kb(callback_data: str = "cancel_action"):
     return InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text=em("❌ Отмена"), callback_data=callback_data, icon_custom_emoji_id=E["cross"])]
-    ])
-
-def admin_kb():
-    return InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text=em("📊 Статистика"), callback_data="admin_stats", icon_custom_emoji_id=E["star"])],
-        [InlineKeyboardButton(text=em("💰 Заявки на вывод"), callback_data="admin_withdraws", icon_custom_emoji_id=E["withdraw"])],
-        [InlineKeyboardButton(text=em("🎫 Создать промокод"), callback_data="admin_create_promo", icon_custom_emoji_id=E["gift"])],
-        [InlineKeyboardButton(text=em("📢 Рассылка"), callback_data="admin_mailing", icon_custom_emoji_id=E["chat"])],
-        [InlineKeyboardButton(text=em("➕ Пополнить баланс"), callback_data="admin_add_balance", icon_custom_emoji_id=E["deposit"])],
-        [InlineKeyboardButton(text=em("📝 Аннулировать баланс"), callback_data="admin_remove_balance", icon_custom_emoji_id=E["cross"])],
+        [InlineKeyboardButton(text=em(" Отмена"), callback_data=callback_data, icon_custom_emoji_id=E["cross"])]
     ])
 
 # ========== БАЗА ДАННЫХ ==========
@@ -993,37 +983,12 @@ async def process_withdraw(msg: Message, state: FSMContext):
     await state.clear()
 
 # === АДМИН ОБРАБОТЧИКИ ===
-@dp.callback_query(F.data.startswith("approve_"))
-async def approve_withdraw(c: CallbackQuery):
-    if c.from_user.id not in ADMIN_IDS:
-        await c.answer(em("⛔ Доступ запрещен!"))
-        return
-    _, uid, amount = c.data.split("_")
-    uid = int(uid)
-    amount = float(amount)
-    
-    await bot.send_message(uid, em(f"✅ Ваша заявка на вывод 💵{amount:.2f} ОДОБРЕНА!"))
-    await c.message.edit_text(em(f"✅ Заявка на вывод 💵{amount:.2f} для пользователя {uid} одобрена"))
-    await c.answer()
+# ========== АДМИН-КОМАНДЫ (ВМЕСТО КНОПОК) ==========
 
-@dp.callback_query(F.data.startswith("reject_"))
-async def reject_withdraw(c: CallbackQuery):
-    if c.from_user.id not in ADMIN_IDS:
-        await c.answer(em("⛔ Доступ запрещен!"))
-        return
-    _, uid, amount = c.data.split("_")
-    uid = int(uid)
-    amount = float(amount)
-    
-    upd_bal(uid, amount)
-    await bot.send_message(uid, em(f"❌ Ваша заявка на вывод 💵{amount:.2f} ОТКЛОНЕНА. Средства возвращены на баланс."))
-    await c.message.edit_text(em(f"❌ Заявка на вывод 💵{amount:.2f} для пользователя {uid} отклонена"))
-    await c.answer()
-
-@dp.message(Command("admin"), F.chat.type == "private")
+@dp.message(Command("admin"))
 async def admin_panel(msg: Message):
     if msg.from_user.id not in ADMIN_IDS:
-        await msg.answer(em("⛔ Доступ запрещен!"))
+        await msg.answer("⛔ Доступ запрещен!")
         return
     
     conn = sqlite3.connect('data.db')
@@ -1036,13 +1001,178 @@ async def admin_panel(msg: Message):
     pending_withdraws = cur.fetchone()[0]
     conn.close()
     
-    txt = em(f"""📊 <b>Админ-панель</b>
+    await msg.answer(
+        f"📊 <b>Админ-панель</b>\n\n"
+        f"👥 Игроков: {total_users}\n"
+        f"💰 Общий баланс: ${total_balance:.2f}\n"
+        f"⏳ Заявок на вывод: {pending_withdraws}\n\n"
+        f"<b>Команды:</b>\n"
+        f"/withdraws - список заявок\n"
+        f"/approve {id} - одобрить вывод\n"
+        f"/reject {id} - отклонить вывод\n"
+        f"/add {id} {сумма} - пополнить баланс\n"
+        f"/remove {id} {сумма} - списать баланс\n"
+        f"/promo {код} {сумма} {лимит} - создать промокод\n"
+        f"/sendall {текст} - рассылка",
+        parse_mode=ParseMode.HTML
+    )
 
-👥 Всего игроков: {total_users}
-💰 Общий баланс: 💵{total_balance:.2f}
-⏳ Заявок на вывод: {pending_withdraws}""")
+@dp.message(Command("withdraws"))
+async def list_withdraws(msg: Message):
+    if msg.from_user.id not in ADMIN_IDS:
+        return
     
-    await msg.answer(txt, reply_markup=admin_kb(), parse_mode=ParseMode.HTML)
+    conn = sqlite3.connect('data.db')
+    cur = conn.cursor()
+    cur.execute("SELECT id, uid, amount, created FROM withdraws WHERE status = 'pending'")
+    requests = cur.fetchall()
+    conn.close()
+    
+    if not requests:
+        await msg.answer("📭 Нет активных заявок")
+        return
+    
+    for req in requests:
+        await msg.answer(
+            f"💰 Заявка #{req[0]}\n"
+            f"👤 ID: {req[1]}\n"
+            f"💵 Сумма: ${req[2]}\n"
+            f"📅 {req[3]}\n\n"
+            f"✅ /approve {req[0]}\n"
+            f"❌ /reject {req[0]}"
+        )
+
+@dp.message(Command("approve"))
+async def approve_withdraw(msg: Message):
+    if msg.from_user.id not in ADMIN_IDS:
+        return
+    
+    try:
+        withdraw_id = int(msg.text.split()[1])
+        
+        conn = sqlite3.connect('data.db')
+        cur = conn.cursor()
+        cur.execute("SELECT uid, amount FROM withdraws WHERE id = ? AND status = 'pending'", (withdraw_id,))
+        req = cur.fetchone()
+        
+        if req:
+            uid, amount = req
+            cur.execute("UPDATE withdraws SET status = 'completed' WHERE id = ?", (withdraw_id,))
+            conn.commit()
+            await bot.send_message(uid, f"✅ Ваша заявка на вывод ${amount:.2f} ОДОБРЕНА!")
+            await msg.answer(f"✅ Заявка #{withdraw_id} одобрена")
+        else:
+            await msg.answer("❌ Заявка не найдена")
+        conn.close()
+    except:
+        await msg.answer("❌ /approve {id}")
+
+@dp.message(Command("reject"))
+async def reject_withdraw(msg: Message):
+    if msg.from_user.id not in ADMIN_IDS:
+        return
+    
+    try:
+        withdraw_id = int(msg.text.split()[1])
+        
+        conn = sqlite3.connect('data.db')
+        cur = conn.cursor()
+        cur.execute("SELECT uid, amount FROM withdraws WHERE id = ? AND status = 'pending'", (withdraw_id,))
+        req = cur.fetchone()
+        
+        if req:
+            uid, amount = req
+            upd_bal(uid, amount)  # Возвращаем деньги
+            cur.execute("UPDATE withdraws SET status = 'rejected' WHERE id = ?", (withdraw_id,))
+            conn.commit()
+            await bot.send_message(uid, f"❌ Ваша заявка на вывод ${amount:.2f} ОТКЛОНЕНА. Деньги возвращены.")
+            await msg.answer(f"❌ Заявка #{withdraw_id} отклонена")
+        else:
+            await msg.answer("❌ Заявка не найдена")
+        conn.close()
+    except:
+        await msg.answer("❌ /reject {id}")
+
+@dp.message(Command("add"))
+async def admin_add_balance(msg: Message):
+    if msg.from_user.id not in ADMIN_IDS:
+        return
+    
+    try:
+        parts = msg.text.split()
+        user_id = int(parts[1])
+        amount = float(parts[2])
+        
+        upd_bal(user_id, amount)
+        await msg.answer(f"✅ Пользователю {user_id} начислено ${amount:.2f}")
+        await bot.send_message(user_id, f"✅ Админ начислил вам ${amount:.2f}")
+    except:
+        await msg.answer("❌ /add {id} {сумма}")
+
+@dp.message(Command("remove"))
+async def admin_remove_balance(msg: Message):
+    if msg.from_user.id not in ADMIN_IDS:
+        return
+    
+    try:
+        parts = msg.text.split()
+        user_id = int(parts[1])
+        amount = float(parts[2])
+        
+        upd_bal(user_id, -amount)
+        await msg.answer(f"✅ У пользователя {user_id} списано ${amount:.2f}")
+        await bot.send_message(user_id, f"⚠️ Админ списал ${amount:.2f} с баланса")
+    except:
+        await msg.answer("❌ /remove {id} {сумма}")
+
+@dp.message(Command("promo"))
+async def admin_create_promo(msg: Message):
+    if msg.from_user.id not in ADMIN_IDS:
+        return
+    
+    try:
+        parts = msg.text.split()
+        code = parts[1].upper()
+        reward = float(parts[2])
+        max_act = int(parts[3]) if len(parts) > 3 else 0
+        
+        conn = sqlite3.connect('data.db')
+        cur = conn.cursor()
+        cur.execute("INSERT INTO promos (code, reward, max_act, expires) VALUES (?, ?, ?, ?)",
+                   (code, reward, max_act, (datetime.now() + timedelta(days=30)).strftime("%Y-%m-%d")))
+        conn.commit()
+        conn.close()
+        
+        await msg.answer(f"✅ Промокод {code} создан!\n💰 Награда: ${reward}\n🔢 Лимит: {max_act if max_act > 0 else '∞'}")
+    except:
+        await msg.answer("❌ /promo {код} {сумма} {лимит}")
+
+@dp.message(Command("sendall"))
+async def admin_mailing(msg: Message):
+    if msg.from_user.id not in ADMIN_IDS:
+        return
+    
+    text = msg.text.replace("/sendall ", "")
+    if not text:
+        await msg.answer("❌ /sendall {текст}")
+        return
+    
+    conn = sqlite3.connect('data.db')
+    cur = conn.cursor()
+    cur.execute("SELECT uid FROM users")
+    users = cur.fetchall()
+    conn.close()
+    
+    sent = 0
+    for user in users:
+        try:
+            await bot.send_message(user[0], text)
+            sent += 1
+            await asyncio.sleep(0.05)
+        except:
+            pass
+    
+    await msg.answer(f"✅ Рассылка завершена! Отправлено {sent} пользователям")
 
 # === КОМАНДА /send ===
 @dp.message(Command("send"), F.chat.type == "private")
@@ -1340,15 +1470,15 @@ async def chat_target(msg: Message):
 # === ЗАПУСК ===
 async def main():
     await bot.set_my_commands([
-        BotCommand(command="start", description=em("🚀 Запустить бота")),
-        BotCommand(command="help", description=em("❓ Помощь")),
-        BotCommand(command="balance", description=em("💰 Баланс")),
-        BotCommand(command="dice", description=em("🎲 Кости")),
-        BotCommand(command="football", description=em("⚽️ Футбол")),
-        BotCommand(command="target", description=em("🎯 Дартс")),
-        BotCommand(command="cub", description=em("⚔️ Дуэль")),
-        BotCommand(command="send", description=em("📤 Перевод")),
-        BotCommand(command="admin", description=em("👑 Админ")),
+        BotCommand(command="start", description=em(" Запустить бота")),
+        BotCommand(command="help", description=em(" Помощь")),
+        BotCommand(command="balance", description=em(" Баланс")),
+        BotCommand(command="dice", description=em(" Кости")),
+        BotCommand(command="football", description=em(" Футбол")),
+        BotCommand(command="target", description=em(" Дартс")),
+        BotCommand(command="cub", description=em(" Дуэль")),
+        BotCommand(command="send", description=em(" Перевод")),
+        BotCommand(command="admin", description=em(" Админ")),
     ])
     logging.info("✅ Бот запущен!")
     await dp.start_polling(bot)
