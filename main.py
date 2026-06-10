@@ -19,7 +19,7 @@ from aiogram.fsm.storage.memory import MemoryStorage
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 
 # ========== КОНФИГ ==========
-BOT_TOKEN = "7932790272:AAEu3HTVBc6gibrlSm4Wguq3ss5KurubpBs"
+BOT_TOKEN = "7932790272:AAHvHvVR0ysdJ8VUoWCnsDmfNgzDK3Tw_3U"
 CRYPTOBOT_TOKEN = "594394:AAqYLgin8OMpwWvpBXCDiNGcpnGHJ5NDXPn"
 ADMIN_IDS = [7966949924]
 BOT_USERNAME = "SecondCasBOT"
