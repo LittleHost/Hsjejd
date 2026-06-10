@@ -7,12 +7,12 @@ import re
 from datetime import datetime, timedelta
 from typing import Dict, Optional
 from aiogram import Bot, Dispatcher, types, F
-from aiogram.enums import ParseMode
+from aiogram.enums import ParseMode, ChatMemberStatus
 from aiogram.filters import Command
 from aiogram.types import (
     InlineKeyboardMarkup, InlineKeyboardButton, ReplyKeyboardMarkup,
     KeyboardButton, CallbackQuery, Message, BotCommand,
-    LabeledPrice, PreCheckoutQuery, ChatMemberStatus
+    LabeledPrice, PreCheckoutQuery
 )
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
