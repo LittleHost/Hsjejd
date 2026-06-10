@@ -272,25 +272,19 @@ def can_bet(uid: int):
         return False, COOLDOWN - (now - u["last_bet"])
     return True, 0
 
+# ========== ПРОВЕРКА ПОДПИСКИ (УПРОЩЕННАЯ) ==========
+REQUIRED_CHANNEL_ID = -1003948376817  # ЗАМЕНИ НА РЕАЛЬНЫЙ ID КАНАЛА
+
 async def check_subscription(uid: int) -> bool:
+    """Проверяет подписку пользователя на канал"""
     try:
-        member = await bot.get_chat_member(REQUIRED_CHANNEL, uid)
+        member = await bot.get_chat_member(REQUIRED_CHANNEL_ID, uid)
         if member.status in [ChatMemberStatus.MEMBER, ChatMemberStatus.ADMINISTRATOR, ChatMemberStatus.CREATOR]:
-            if get_user(uid).get("subscribed", 0) == 0:
-                upd_subscribed(uid, 1)
-                u = get_user(uid)
-                if u.get("ref_id") and u.get("ref_id") > 0:
-                    upd_bal(u["ref_id"], 1)
-                    conn = sqlite3.connect('data.db')
-                    cur = conn.cursor()
-                    cur.execute("UPDATE users SET ref_earn = ref_earn + 1, ref_dep_cnt = ref_dep_cnt + 1 WHERE uid = ?", (u["ref_id"],))
-                    conn.commit()
-                    conn.close()
             return True
         return False
     except:
         return False
-
+        
 # ========== ОСНОВНЫЕ ОБРАБОТЧИКИ ==========
 @dp.message(Command("start"), F.chat.type == "private")
 async def start(msg: Message):
