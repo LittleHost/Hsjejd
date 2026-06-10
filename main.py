@@ -325,8 +325,8 @@ async def start(msg: Message):
         await msg.answer(txt, reply_markup=main_kb(), parse_mode=ParseMode.HTML)
     else:
         keyboard = InlineKeyboardMarkup(inline_keyboard=[
-            [InlineKeyboardButton(text="📢 Подписаться", url="https://t.me/SecondNewsRU", icon_custom_emoji_id=E["chat"])],
-            [InlineKeyboardButton(text=em("✅ Проверить подписку"), callback_data="check_sub", icon_custom_emoji_id=E["check"])]
+            [InlineKeyboardButton(text=" Подписаться", url="https://t.me/SecondNewsRU", icon_custom_emoji_id=E["chat"])],
+            [InlineKeyboardButton(text=em(" Проверить подписку"), callback_data="check_sub", icon_custom_emoji_id=E["check"])]
         ])
         await msg.answer(
             em("⚠️ <b>Для использования бота необходимо подписаться на наш канал!</b>\n\n👇 Нажмите на кнопку ниже, подпишитесь и нажмите «Проверить подписку»"),
@@ -339,9 +339,9 @@ async def check_sub_callback(c: CallbackQuery):
     if await check_subscription(c.from_user.id):
         await c.message.delete()
         await start(c.message)
-        await c.answer(em("✅ Подписка подтверждена! Добро пожаловать!"), show_alert=True)
+        await c.answer(em(" Подписка подтверждена! Добро пожаловать!"), show_alert=True)
     else:
-        await c.answer(em("❌ Вы не подписаны на канал! Подпишитесь и нажмите снова."), show_alert=True)
+        await c.answer(em(" Вы не подписаны на канал! Подпишитесь и нажмите снова."), show_alert=True)
 
 # === HELP ===
 @dp.message(Command("help"), F.chat.type == "private")
@@ -367,7 +367,7 @@ async def help_cmd(msg: Message):
 @dp.message(F.text.lower().in_(["баланс", "б", "b", "бал", "мешок", "гроши"]), F.chat.type.in_(["group", "supergroup"]))
 async def balance_cmd(msg: Message):
     if not await check_subscription(msg.from_user.id):
-        await msg.reply(em("⚠️ Подпишитесь на канал!"))
+        await msg.reply(em(" Подпишитесь на канал!"))
         return
     u = get_user(msg.from_user.id)
     await msg.reply(em(f"💰 Ваш баланс: 💵{u['balance']:.2f}"))
@@ -420,7 +420,7 @@ async def back_deposit(c: CallbackQuery):
 @dp.callback_query(F.data == "ref")
 async def ref_prog(c: CallbackQuery):
     if not await check_subscription(c.from_user.id):
-        await c.answer(em("❌ Подпишитесь на канал!"), show_alert=True)
+        await c.answer(em(" Подпишитесь на канал!"), show_alert=True)
         return
     u = get_user(c.from_user.id)
     txt = em(f"""👥 <b>Реферальная программа</b>
@@ -496,7 +496,7 @@ class TransferState(StatesGroup):
 @dp.callback_query(F.data == "transfer")
 async def transfer_start(c: CallbackQuery, state: FSMContext):
     if not await check_subscription(c.from_user.id):
-        await c.answer(em("❌ Подпишитесь на канал!"), show_alert=True)
+        await c.answer(em(" Подпишитесь на канал!"), show_alert=True)
         return
     
     await c.message.edit_text(
@@ -512,12 +512,12 @@ async def transfer_amount(msg: Message, state: FSMContext):
     try:
         amount = float(msg.text.replace(",", "."))
         if amount < MIN_TRANSFER:
-            await msg.answer(em(f"❌ Минимальная сумма перевода 💵{MIN_TRANSFER:.2f}!"))
+            await msg.answer(em(f" Минимальная сумма перевода 💵{MIN_TRANSFER:.2f}!"))
             return
         
         u = get_user(msg.from_user.id)
         if amount > u["balance"]:
-            await msg.answer(em(f"❌ Недостаточно средств! Баланс: 💵{u['balance']:.2f}"))
+            await msg.answer(em(f" Недостаточно средств! Баланс: 💵{u['balance']:.2f}"))
             return
         
         await state.update_data(transfer_amount=amount)
@@ -528,7 +528,7 @@ async def transfer_amount(msg: Message, state: FSMContext):
         )
         await state.set_state(TransferState.waiting_target)
     except:
-        await msg.answer(em("❌ Введите число!"))
+        await msg.answer(em(" Введите число!"))
 
 @dp.message(TransferState.waiting_target, F.chat.type == "private")
 async def transfer_target(msg: Message, state: FSMContext):
@@ -819,7 +819,7 @@ async def deposit_menu(c: CallbackQuery):
 
 @dp.callback_query(F.data == "dep_crypto")
 async def dep_crypto(c: CallbackQuery, state: FSMContext):
-    await c.message.answer(em("✏️ Введите сумму для пополнения (мин. 💵0.15):"), reply_markup=cancel_kb("cancel_deposit"))
+    await c.message.answer(em(" Введите сумму для пополнения (мин. $0.15):"), reply_markup=cancel_kb("cancel_deposit"))
     await state.set_state(DepositState.wait_crypto)
     await c.answer()
 
@@ -882,13 +882,13 @@ async def check_crypto_payment(c: CallbackQuery):
                         await c.answer(em("✅ Баланс пополнен!"), show_alert=True)
                         return
     
-    await c.answer(em("❌ Платеж не найден! Оплатите счет и нажмите снова."), show_alert=True)
+    await c.answer(em(" Платеж не найден! Оплатите счет и нажмите снова."), show_alert=True)
 
 # === STARS ОПЛАТА ===
 @dp.callback_query(F.data == "dep_stars")
 async def dep_stars(c: CallbackQuery):
     if not await check_subscription(c.from_user.id):
-        await c.answer(em("❌ Подпишитесь на канал!"), show_alert=True)
+        await c.answer(em(" Подпишитесь на канал!"), show_alert=True)
         return
     await c.message.edit_text(em("⭐️ <b>Пополнение через Telegram Stars</b>\n\nВыберите сумму:"), reply_markup=stars_amount_kb(), parse_mode=ParseMode.HTML)
     await c.answer()
@@ -938,7 +938,7 @@ class WithdrawState(StatesGroup):
 @dp.callback_query(F.data == "withdraw")
 async def withdraw_menu(c: CallbackQuery, state: FSMContext):
     if not await check_subscription(c.from_user.id):
-        await c.answer(em("❌ Подпишитесь на канал!"), show_alert=True)
+        await c.answer(em(" Подпишитесь на канал!"), show_alert=True)
         return
     await c.message.answer(em(f"💰 <b>Вывод средств</b>\n\nМинимальная сумма: 💵{MIN_WITHDRAW:.2f}\nВведите сумму:"), reply_markup=cancel_kb("cancel_withdraw"), parse_mode=ParseMode.HTML)
     await state.set_state(WithdrawState.wait)
@@ -956,10 +956,10 @@ async def process_withdraw(msg: Message, state: FSMContext):
     try:
         amount = float(msg.text.replace(",", "."))
         if amount < MIN_WITHDRAW:
-            await msg.answer(em(f"❌ Минимальная сумма 💵{MIN_WITHDRAW:.2f}!"))
+            await msg.answer(em(f" Минимальная сумма ${MIN_WITHDRAW:.2f}!"))
             return
         if amount > u["balance"]:
-            await msg.answer(em(f"❌ Недостаточно средств! Баланс: 💵{u['balance']:.2f}"))
+            await msg.answer(em(f" Недостаточно средств! Баланс: {u['balance']:.2f}"))
             return
         
         upd_bal(msg.from_user.id, -amount)
