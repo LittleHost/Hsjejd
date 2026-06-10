@@ -3,6 +3,7 @@ import logging
 import random
 import sqlite3
 import aiohttp
+from aiogram.types import BotCommand
 from datetime import datetime, timedelta
 from typing import Dict, Optional
 from aiogram import Bot, Dispatcher, types, F
