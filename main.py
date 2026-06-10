@@ -65,14 +65,14 @@ def p(text: str) -> str:
     replacements = {
         "💰": f'<tg-emoji emoji-id="{PREMIUM["money"]}">💰</tg-emoji>',
         "💵": f'<tg-emoji emoji-id="{PREMIUM["money"]}">💵</tg-emoji>',
+        "💸": f'<tg-emoji emoji-id="{PREMIUM["money"]}">💸</tg-emoji>',
         "⚡️": f'<tg-emoji emoji-id="{PREMIUM["bolt"]}">⚡️</tg-emoji>',
         "🎮": f'<tg-emoji emoji-id="{PREMIUM["game"]}">🎮</tg-emoji>',
         "👤": f'<tg-emoji emoji-id="{PREMIUM["profile"]}">👤</tg-emoji>',
+        "👥": f'<tg-emoji emoji-id="{PREMIUM["profile"]}">👥</tg-emoji>',
         "⏰": f'<tg-emoji emoji-id="{PREMIUM["time"]}">⏰</tg-emoji>',
         "💳": f'<tg-emoji emoji-id="{PREMIUM["deposit"]}">💳</tg-emoji>',
-        "💰": f'<tg-emoji emoji-id="{PREMIUM["withdraw"]}">💰</tg-emoji>',
         "🎁": f'<tg-emoji emoji-id="{PREMIUM["gift"]}">🎁</tg-emoji>',
-        "👥": f'<tg-emoji emoji-id="{PREMIUM["ref"]}">👥</tg-emoji>',
         "⭐️": f'<tg-emoji emoji-id="{PREMIUM["star"]}">⭐️</tg-emoji>',
         "💎": f'<tg-emoji emoji-id="{PREMIUM["crypto"]}">💎</tg-emoji>',
         "❌": f'<tg-emoji emoji-id="{PREMIUM["cross"]}">❌</tg-emoji>',
@@ -85,17 +85,19 @@ def p(text: str) -> str:
         "📤": f'<tg-emoji emoji-id="{PREMIUM["send"]}">📤</tg-emoji>',
         "🏆": f'<tg-emoji emoji-id="{PREMIUM["diamond"]}">🏆</tg-emoji>',
         "🎉": f'<tg-emoji emoji-id="{PREMIUM["pop"]}">🎉</tg-emoji>',
-        "🎲": "🎲",
-        "⚽️": "⚽️",
-        "🎯": "🎯",
-        "🟩": "🟩",
-        "⬅️": "⬅️",
-        "➡️": "➡️",
-        "💥": "💥",
+        # Игровые эмодзи (НЕ ЗАМЕНЯЕМ - оставляем обычными)
+        # "🎲": "🎲",
+        # "⚽️": "⚽️",
+        # "🎯": "🎯",
+        # "🟩": "🟩",
+        # "⬅️": "⬅️",
+        # "➡️": "➡️",
+        # "💥": "💥",
     }
     for old, new in replacements.items():
         text = text.replace(old, new)
     return text
+
 
 # ========== КЛАВИАТУРЫ ==========
 def main_kb():
