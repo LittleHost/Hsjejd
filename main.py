@@ -316,8 +316,8 @@ async def start(msg: Message):
         await msg.answer(txt, reply_markup=main_kb(), parse_mode=ParseMode.HTML)
     else:
         keyboard = InlineKeyboardMarkup(inline_keyboard=[
-            [InlineKeyboardButton(text="📢 Подписаться", url="https://t.me/SecondNewsRU", icon_custom_emoji_id=PREMIUM["chat"])],
-            [InlineKeyboardButton(text=pm("✅ Проверить"), callback_data="check_sub", icon_custom_emoji_id=PREMIUM["check"])]
+            [InlineKeyboardButton(text=" Подписаться", url="https://t.me/SecondNewsRU", icon_custom_emoji_id=PREMIUM["chat"])],
+            [InlineKeyboardButton(text=pm(" Проверить"), callback_data="check_sub", icon_custom_emoji_id=PREMIUM["check"])]
         ])
         await msg.answer(
             "⚠️ <b>Для использования бота необходимо подписаться на наш канал!</b>\n\n👇 Нажмите на кнопку ниже, подпишитесь и нажмите «Проверить подписку»",
@@ -330,9 +330,9 @@ async def check_sub_callback(c: CallbackQuery):
     if await check_subscription(c.from_user.id):
         await c.message.delete()
         await start(c.message)
-        await c.answer("✅ Подписка подтверждена! Добро пожаловать!", show_alert=True)
+        await c.answer(" Подписка подтверждена! Добро пожаловать!", show_alert=True)
     else:
-        await c.answer("❌ Вы не подписаны на канал! Подпишитесь и нажмите снова.", show_alert=True)
+        await c.answer(" Вы не подписаны на канал! Подпишитесь и нажмите снова.", show_alert=True)
 
 # === HELP ===
 @dp.message(Command("help"), F.chat.type == "private")
@@ -358,7 +358,7 @@ async def help_cmd(msg: Message):
 @dp.message(F.text.lower().in_(["баланс", "б", "b", "бал", "мешок", "гроши"]), F.chat.type.in_(["group", "supergroup"]))
 async def balance_cmd(msg: Message):
     if not await check_subscription(msg.from_user.id):
-        await msg.reply("⚠️ Подпишитесь на канал!")
+        await msg.reply(" Подпишитесь на канал!")
         return
     u = get_user(msg.from_user.id)
     await msg.reply(f"💰 Ваш баланс: ${u['balance']:.2f}")
@@ -411,7 +411,7 @@ async def back_deposit(c: CallbackQuery):
 @dp.callback_query(F.data == "ref")
 async def ref_prog(c: CallbackQuery):
     if not await check_subscription(c.from_user.id):
-        await c.answer("❌ Подпишитесь на канал!", show_alert=True)
+        await c.answer(" Подпишитесь на канал!", show_alert=True)
         return
     u = get_user(c.from_user.id)
     txt = pm(f"""👥 Реферальная программа
@@ -443,7 +443,7 @@ class PromoState(StatesGroup):
 @dp.callback_query(F.data == "promo")
 async def promo_menu(c: CallbackQuery, state: FSMContext):
     if not await check_subscription(c.from_user.id):
-        await c.answer("❌ Подпишитесь на канал!", show_alert=True)
+        await c.answer(" Подпишитесь на канал!", show_alert=True)
         return
     txt = pm("🎁 Введи промокод:\n\nПросто напиши код в чат — и бонус зачислится автоматически.")
     await c.message.edit_text(txt, reply_markup=back_kb(), parse_mode=ParseMode.HTML)
@@ -486,7 +486,7 @@ class TransferState(StatesGroup):
 @dp.callback_query(F.data == "transfer")
 async def transfer_start(c: CallbackQuery, state: FSMContext):
     if not await check_subscription(c.from_user.id):
-        await c.answer("❌ Подпишитесь на канал!", show_alert=True)
+        await c.answer(" Подпишитесь на канал!", show_alert=True)
         return
     
     await c.message.edit_text(
@@ -502,12 +502,12 @@ async def transfer_amount(msg: Message, state: FSMContext):
     try:
         amount = float(msg.text.replace(",", "."))
         if amount < MIN_TRANSFER:
-            await msg.answer(f"❌ Минимальная сумма перевода ${MIN_TRANSFER:.2f}!")
+            await msg.answer(f" Минимальная сумма перевода ${MIN_TRANSFER:.2f}!")
             return
         
         u = get_user(msg.from_user.id)
         if amount > u["balance"]:
-            await msg.answer(f"❌ Недостаточно средств! Баланс: ${u['balance']:.2f}")
+            await msg.answer(f" Недостаточно средств! Баланс: ${u['balance']:.2f}")
             return
         
         await state.update_data(transfer_amount=amount)
@@ -517,7 +517,7 @@ async def transfer_amount(msg: Message, state: FSMContext):
         )
         await state.set_state(TransferState.waiting_target)
     except:
-        await msg.answer("❌ Введите число!")
+        await msg.answer(" Введите число!")
 
 @dp.message(TransferState.waiting_target, F.chat.type == "private")
 async def transfer_target(msg: Message, state: FSMContext):
@@ -841,7 +841,7 @@ async def process_crypto(msg: Message, state: FSMContext):
                         f"🔗 <a href='{invoice_url}'>Оплатить</a>\n\n"
                         f"После оплаты нажмите кнопку ниже.",
                         reply_markup=InlineKeyboardMarkup(inline_keyboard=[
-                            [InlineKeyboardButton(text=pm("✅ Я оплатил"), callback_data=f"check_crypto_{amount}", icon_custom_emoji_id=PREMIUM["check"])]
+                            [InlineKeyboardButton(text=pm("Я оплатил"), callback_data=f"check_crypto_{amount}", icon_custom_emoji_id=PREMIUM["check"])]
                         ]),
                         parse_mode=ParseMode.HTML
                     )
@@ -871,13 +871,13 @@ async def check_crypto_payment(c: CallbackQuery):
                         await c.answer("✅ Баланс пополнен!", show_alert=True)
                         return
     
-    await c.answer("❌ Платеж не найден! Оплатите счет и нажмите снова.", show_alert=True)
+    await c.answer(" Платеж не найден! Оплатите счет и нажмите снова.", show_alert=True)
 
 # === STARS ОПЛАТА ===
 @dp.callback_query(F.data == "dep_stars")
 async def dep_stars(c: CallbackQuery):
     if not await check_subscription(c.from_user.id):
-        await c.answer("❌ Подпишитесь на канал!", show_alert=True)
+        await c.answer(" Подпишитесь на канал!", show_alert=True)
         return
     await c.message.edit_text(pm("⭐️ Пополнение через Telegram Stars\n\nВыберите сумму:"), reply_markup=stars_amount_kb(), parse_mode=ParseMode.HTML)
     await c.answer()
