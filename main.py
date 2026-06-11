@@ -19,7 +19,7 @@ from aiogram.fsm.storage.memory import MemoryStorage
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 
 # ========== КОНФИГ ==========
-BOT_TOKEN = "7932790272:AAEu3HTVBc6gibrlSm4Wguq3ss5KurubpBs"
+BOT_TOKEN = "7932790272:AAHvHvVR0ysdJ8VUoWCnsDmfNgzDK3Tw_3U"
 CRYPTOBOT_TOKEN = "594394:AAqYLgin8OMpwWvpBXCDiNGcpnGHJ5NDXPn"
 ADMIN_IDS = [7966949924]
 BOT_USERNAME = "SecondCasBOT"
@@ -55,8 +55,8 @@ PREMIUM_BUTTONS = {
 def main_kb():
     return ReplyKeyboardMarkup(
         keyboard=[[
-            KeyboardButton(text="🎮 Игры в боте", icon_custom_emoji_id=PREMIUM_BUTTONS["game"]),
-            KeyboardButton(text="👤 Профиль", icon_custom_emoji_id=PREMIUM_BUTTONS["profile"])
+            KeyboardButton(text=" Игры в боте", icon_custom_emoji_id=PREMIUM_BUTTONS["game"]),
+            KeyboardButton(text=" Профиль", icon_custom_emoji_id=PREMIUM_BUTTONS["profile"])
         ]],
         resize_keyboard=True
     )
@@ -69,45 +69,45 @@ def games_kb():
         InlineKeyboardButton(text="🎯", callback_data="game_target"),
         InlineKeyboardButton(text="🗼", callback_data="game_tower")
     )
-    b.row(InlineKeyboardButton(text="💬 Чат", url=CHAT_LINK, icon_custom_emoji_id=PREMIUM_BUTTONS["chat"]))
-    b.row(InlineKeyboardButton(text="🔙 Назад", callback_data="back_main", icon_custom_emoji_id=PREMIUM_BUTTONS["back"]))
+    b.row(InlineKeyboardButton(text=" Чат", url=CHAT_LINK, icon_custom_emoji_id=PREMIUM_BUTTONS["chat"]))
+    b.row(InlineKeyboardButton(text=" Назад", callback_data="back_main", icon_custom_emoji_id=PREMIUM_BUTTONS["back"]))
     return b.as_markup()
 
 def profile_kb():
     return InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="💳 Пополнить", callback_data="deposit", icon_custom_emoji_id=PREMIUM_BUTTONS["deposit"]),
-         InlineKeyboardButton(text="💰 Вывести", callback_data="withdraw", icon_custom_emoji_id=PREMIUM_BUTTONS["withdraw"])],
-        [InlineKeyboardButton(text="🎁 Промокоды", callback_data="promo", icon_custom_emoji_id=PREMIUM_BUTTONS["gift"]),
-         InlineKeyboardButton(text="👥 Рефералы", callback_data="ref", icon_custom_emoji_id=PREMIUM_BUTTONS["ref"])],
-        [InlineKeyboardButton(text="📤 Перевод", callback_data="transfer", icon_custom_emoji_id=PREMIUM_BUTTONS["send"]),
-         InlineKeyboardButton(text="🔙 Назад", callback_data="back_main", icon_custom_emoji_id=PREMIUM_BUTTONS["back"])]
+        [InlineKeyboardButton(text=" Пополнить", callback_data="deposit", icon_custom_emoji_id=PREMIUM_BUTTONS["deposit"]),
+         InlineKeyboardButton(text=" Вывести", callback_data="withdraw", icon_custom_emoji_id=PREMIUM_BUTTONS["withdraw"])],
+        [InlineKeyboardButton(text=" Промокоды", callback_data="promo", icon_custom_emoji_id=PREMIUM_BUTTONS["gift"]),
+         InlineKeyboardButton(text=" Рефералы", callback_data="ref", icon_custom_emoji_id=PREMIUM_BUTTONS["ref"])],
+        [InlineKeyboardButton(text=" Перевод", callback_data="transfer", icon_custom_emoji_id=PREMIUM_BUTTONS["send"]),
+         InlineKeyboardButton(text=" Назад", callback_data="back_main", icon_custom_emoji_id=PREMIUM_BUTTONS["back"])]
     ])
 
 def deposit_kb():
     return InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="💎 CryptoBot", callback_data="dep_crypto", icon_custom_emoji_id=PREMIUM_BUTTONS["crypto"])],
-        [InlineKeyboardButton(text="⭐️ Stars", callback_data="dep_stars", icon_custom_emoji_id=PREMIUM_BUTTONS["star"])],
-        [InlineKeyboardButton(text="🔙 Назад", callback_data="back_profile", icon_custom_emoji_id=PREMIUM_BUTTONS["back"])]
+        [InlineKeyboardButton(text=" CryptoBot", callback_data="dep_crypto", icon_custom_emoji_id=PREMIUM_BUTTONS["crypto"])],
+        [InlineKeyboardButton(text=" Stars", callback_data="dep_stars", icon_custom_emoji_id=PREMIUM_BUTTONS["star"])],
+        [InlineKeyboardButton(text=" Назад", callback_data="back_profile", icon_custom_emoji_id=PREMIUM_BUTTONS["back"])]
     ])
 
 def stars_amount_kb():
     return InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="⭐️ 50 Stars ($0.55)", callback_data="stars_50", icon_custom_emoji_id=PREMIUM_BUTTONS["star"])],
-        [InlineKeyboardButton(text="⭐️ 100 Stars ($1.10)", callback_data="stars_100", icon_custom_emoji_id=PREMIUM_BUTTONS["star"])],
-        [InlineKeyboardButton(text="⭐️ 250 Stars ($2.75)", callback_data="stars_250", icon_custom_emoji_id=PREMIUM_BUTTONS["star"])],
-        [InlineKeyboardButton(text="⭐️ 500 Stars ($5.50)", callback_data="stars_500", icon_custom_emoji_id=PREMIUM_BUTTONS["star"])],
-        [InlineKeyboardButton(text="⭐️ 1000 Stars ($11.00)", callback_data="stars_1000", icon_custom_emoji_id=PREMIUM_BUTTONS["star"])],
-        [InlineKeyboardButton(text="🔙 Назад", callback_data="back_deposit", icon_custom_emoji_id=PREMIUM_BUTTONS["back"])]
+        [InlineKeyboardButton(text=" 50 Stars ($0.55)", callback_data="stars_50", icon_custom_emoji_id=PREMIUM_BUTTONS["star"])],
+        [InlineKeyboardButton(text=" 100 Stars ($1.10)", callback_data="stars_100", icon_custom_emoji_id=PREMIUM_BUTTONS["star"])],
+        [InlineKeyboardButton(text=" 250 Stars ($2.75)", callback_data="stars_250", icon_custom_emoji_id=PREMIUM_BUTTONS["star"])],
+        [InlineKeyboardButton(text=" 500 Stars ($5.50)", callback_data="stars_500", icon_custom_emoji_id=PREMIUM_BUTTONS["star"])],
+        [InlineKeyboardButton(text=" 1000 Stars ($11.00)", callback_data="stars_1000", icon_custom_emoji_id=PREMIUM_BUTTONS["star"])],
+        [InlineKeyboardButton(text=" Назад", callback_data="back_deposit", icon_custom_emoji_id=PREMIUM_BUTTONS["back"])]
     ])
 
 def back_kb():
     return InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="🔙 Назад", callback_data="back_profile", icon_custom_emoji_id=PREMIUM_BUTTONS["back"])]
+        [InlineKeyboardButton(text=" Назад", callback_data="back_profile", icon_custom_emoji_id=PREMIUM_BUTTONS["back"])]
     ])
 
 def cancel_kb(callback_data: str = "cancel"):
     return InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="❌ Отмена", callback_data=callback_data, icon_custom_emoji_id=PREMIUM_BUTTONS["cross"])]
+        [InlineKeyboardButton(text=" Отмена", callback_data=callback_data, icon_custom_emoji_id=PREMIUM_BUTTONS["cross"])]
     ])
 
 # ========== БАЗА ДАННЫХ ==========
